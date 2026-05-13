@@ -1,6 +1,3 @@
-# =================================================================
-# FASE 2: INGENIERÍA DE DATOS (Preprocesamiento y Transformación)
-# =================================================================
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -13,7 +10,7 @@ from sklearn.metrics import confusion_matrix, classification_report, accuracy_sc
 # 1. Cargar el conjunto de datos [cite: 9]
 df = pd.read_csv('diabetes.csv')
 
-# 2. PREPROCESAMIENTO: Identificar y corregir valores nulos ocultos [cite: 10]
+# 2. PREPROCESAMIENTO: Identificar y corregir valores nulos ocultos 
 # Reemplazamos los 0 por NaN en columnas donde el 0 no tiene sentido físico
 cols_con_ceros = ['Glucose', 'BloodPressure', 'SkinThickness', 'Insulin', 'BMI']
 df[cols_con_ceros] = df[cols_con_ceros].replace(0, np.nan)
@@ -21,7 +18,7 @@ df[cols_con_ceros] = df[cols_con_ceros].replace(0, np.nan)
 # Imputamos los valores faltantes usando la mediana del conjunto de datos
 df.fillna(df.median(), inplace=True)
 
-# 3. TRANSFORMACIÓN: Escalado y División [cite: 11]
+# 3. TRANSFORMACIÓN: Escalado y División 
 X = df.drop('Outcome', axis=1)
 y = df['Outcome']
 
@@ -33,10 +30,6 @@ X_scaled = scaler.fit_transform(X)
 X_train, X_test, y_train, y_test = train_test_split(X_scaled, y, test_size=0.2, random_state=42)
 
 print("Preprocesamiento y Transformación completados con éxito.")
-
-# =================================================================
-# FASE 3: INGENIERÍA DEL MODELO Y EVALUACIÓN
-# =================================================================
 
 # 4. CONSTRUCCIÓN DEL MODELO: Bosques Aleatorios [cite: 12, 13]
 # Instanciamos el modelo computacional
